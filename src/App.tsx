@@ -1,13 +1,19 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import './App.css';
+import ChatPopup from './components/ChatPopup';
+
+import WidgetToggle from './components/WidgetToggle';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [open, setOpen] = useState(false);
+
+  function toggle() {
+    setOpen(!open);
+  }
 
   return (
-    <div className='w-full h-full bg-neutral-100'>
-      <p className='text-primary-500'>Chat widget</p>
+    <div className='bg-neutral-300 relative w-screen h-screen'>
+      <ChatPopup isOpen={open} />
+      <WidgetToggle toggle={toggle} isOpen={open} />
     </div>
   );
 }
