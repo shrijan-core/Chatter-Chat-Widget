@@ -6,8 +6,8 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div>
-      <p>Chat widget</p>
+    <div className='w-full h-full bg-neutral-100'>
+      <p className='text-primary-500'>Chat widget</p>
     </div>
   );
 }
