@@ -16,7 +16,7 @@ const FAQ = () => {
   };
 
   return (
-    <div className='w-full px-10 h-[260px] overflow-y-auto'>
+    <div className='w-full px-10 h-[260px] overflow-y-auto chatter-scrollbar'>
       {Array.from({ length: 4 }, (_, i) => i).map((i) => {
         return (
           <FaqItem
