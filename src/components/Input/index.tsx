@@ -41,7 +41,7 @@ const DefaultInputComponent = ({
           name={name}
           className={`
             w-full p-2 text-lg border-neutral-300 
-            border-1 rounded-4 outline-0
+            border rounded outline-0
             h-12 py-3 px-4 
             text-neural-900
             font-regular

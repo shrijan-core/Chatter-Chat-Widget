@@ -53,7 +53,7 @@ const Dropdown: React.FC<DropdownProps> = ({
     return (
       <div
         className={`
-        text-neutral-700 w-full  mb-4 
+        text-neutral-700 w-full mb-4
         ${props.isFocused && 'text-error-900'}
         `}
       >
@@ -72,7 +72,7 @@ const Dropdown: React.FC<DropdownProps> = ({
           <div
             className={`
             py-3 pl-[15px] pr-[49px] w-full
-            rounded border-neutral-300
+            rounded border border-neutral-300
             relative text-left text-p
             border-1 flex items-center
 
@@ -114,7 +114,7 @@ const Dropdown: React.FC<DropdownProps> = ({
           className='
           bg-neutral-100 text-neutral-800
           divide-gray-100 rounded-lg px-5 py-3
-          border-1 border-neutral-300'
+          border border-neutral-300'
         >
           {props.children}
         </div>
@@ -132,6 +132,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         ease-in-out
         block w-full rounded
         transition-all duration-200
+        cursor-pointer
         ${props.isDisabled && '!text-neutral-500'}
         ${props.isDisabled && '!cursor-not-allowed'}
         `}
@@ -162,21 +163,21 @@ const Dropdown: React.FC<DropdownProps> = ({
         // ! if option is focused/hovered backgroundColor changes to primary-100 and
         // ! text color changes to primary-600.
         backgroundColor: state.isSelected
-          ? 'var(--primary-500)'
+          ? '#3b9df7'
           : state.isFocused
-          ? 'var(--primary-100)'
+          ? '#ecf5fe'
           : undefined,
         color: state.isSelected
-          ? 'var(--neutral-100)'
+          ? '#fdfdfd'
           : state.isFocused
-          ? 'var(--primary-600)'
+          ? '#1685f3'
           : undefined,
 
         // ! onHover backgroundColor changes to primary-100
         // ! onHover color changes to primary-600
         '&:hover': {
-          backgroundColor: state.isFocused ? 'var(--primary-100)' : undefined,
-          color: state.isFocused ? 'var(--primary-600)' : undefined,
+          backgroundColor: state.isFocused ? '#ecf5fe' : undefined,
+          color: state.isFocused ? '#1685f3' : undefined,
         },
 
         cursor: isDisabled ? 'not-allowed' : 'default',
