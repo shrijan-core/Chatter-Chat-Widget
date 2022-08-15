@@ -5,6 +5,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .chatter-scrollbar {
+    @apply scrollbar-thin scrollbar-thumb-neutral-400 hover:scrollbar-thumb-neutral-500;
+  }
+}
+
 @layer base {
   html {
     font-family: 'Inter', sans-serif;
