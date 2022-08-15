@@ -57,7 +57,19 @@ module.exports = {
       s: '0.875rem',
       vs: '0.75rem',
     },
-    // 3. Font weights
+    // 3. line height
+    lineHeight: {
+      h1: '72px',
+      h2: '60px',
+      h3: '52px',
+      h4: '44px',
+      h5: '32px',
+      h6: '28px',
+      p: '24px',
+      s: '20px',
+      vs: '16px',
+    },
+    // 4. Font weights
     fontWeight: {
       regular: '400',
       'semi-bold': '600',
