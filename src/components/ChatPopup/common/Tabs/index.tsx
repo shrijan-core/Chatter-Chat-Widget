@@ -1,5 +1,8 @@
 import { useState } from 'react';
+
+// common components
 import FAQ from '../FAQ';
+import Support from '../Support';
 
 const TabButton = ({
   title,
@@ -31,6 +34,17 @@ const TabButton = ({
 const ChatTabs = () => {
   const [activeTab, setActiveTab] = useState(0);
 
+  function renderTabContent() {
+    switch (activeTab) {
+      case 0:
+        return <FAQ />;
+      case 1:
+        return <Support />;
+      default:
+        return <FAQ />;
+    }
+  }
+
   return (
     <div className='bg-neutral-100'>
       <div className='flex flex-row'>
@@ -47,7 +61,7 @@ const ChatTabs = () => {
           onClick={() => setActiveTab(1)}
         />
       </div>
-      <FAQ />
+      {renderTabContent()}
     </div>
   );
 };
