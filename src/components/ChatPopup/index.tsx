@@ -1,4 +1,10 @@
+// packages
 import { motion } from 'framer-motion';
+
+// commpon components
+import Brand from './common/Brand';
+import ChatTabs from './common/Tabs';
+import ChatHeader from './common/Header';
 
 // types
 import { ChatPopupProps } from './types';
@@ -17,9 +23,11 @@ const ChatPopup = ({ isOpen }: ChatPopupProps) => {
         open: { opacity: 1, y: -80 },
         closed: { opacity: 0, y: 0 },
       }}
-      className='w-[426px] rounded-lg bg-neutral-100 p-6 h-[480px] shadow-main absolute right-10 bottom-10'
+      className='w-[426px] overflow-hidden rounded-lg rounded-b-none bg-neutral-100 shadow-main absolute right-10 bottom-10'
     >
-      <p>Chat Popup</p>
+      <ChatHeader />
+      <ChatTabs />
+      <Brand />
     </motion.div>
   );
 };
