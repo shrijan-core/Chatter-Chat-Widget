@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import ChatPopup from './components/ChatPopup';
 
-import WidgetToggle from './components/WidgetToggle';
+// components
+import ChatPopup from '@/components/ChatPopup';
+import WidgetToggle from '@/components/WidgetToggle';
 
 function App() {
   const [open, setOpen] = useState(false);
