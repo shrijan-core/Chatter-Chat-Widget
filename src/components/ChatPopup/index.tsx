@@ -20,8 +20,8 @@ const ChatPopup = ({ isOpen }: ChatPopupProps) => {
       }}
       animate={isOpen ? 'open' : 'closed'}
       variants={{
-        open: { opacity: 1, y: -80 },
-        closed: { opacity: 0, y: 0 },
+        open: { opacity: 1, y: -80, visibility: 'visible' },
+        closed: { opacity: 0, y: 0, visibility: 'hidden' },
       }}
       className='w-[426px] overflow-hidden rounded-lg rounded-b-none bg-neutral-100 shadow-main absolute right-10 bottom-10'
     >
