@@ -2,11 +2,14 @@ import React from 'react';
 
 // components
 import Input from '@/components/Input';
+import Button from '@/components/Button';
+import Dropdown from '@/components/Dropdown';
 
 // packages
 import { useForm } from 'react-hook-form';
-import Dropdown from '@/components/Dropdown';
-import Button from '@/components/Button';
+
+// types
+import { UserFormProps } from './types';
 
 const formData = [
   {
@@ -48,7 +51,7 @@ const formData = [
   },
 ];
 
-const UserForm = () => {
+const UserForm = ({ onSkip }: UserFormProps) => {
   const {
     reset,
     control,
@@ -63,7 +66,7 @@ const UserForm = () => {
   };
 
   return (
-    <div className=' rounded-lg shadow-main p-6 '>
+    <div className='rounded-lg shadow-main p-6'>
       <form
         onSubmit={handleSubmit((data) => handleUserCreate(data))}
         className='flex flex-col'
@@ -107,6 +110,7 @@ const UserForm = () => {
             size='small'
             containerStyles='flex-1'
             titleStyles='text-s'
+            onClick={onSkip}
           />
           <Button
             title='Send'
