@@ -83,7 +83,7 @@ const ChatTabs = () => {
             open: {
               height: 260,
             },
-            collapsed: { height: 596 },
+            collapsed: { height: '50vh' },
           }}
           transition={{
             ease: 'easeInOut',
