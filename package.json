@@ -9,12 +9,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/is-url": "^1.2.30",
     "framer-motion": "^7.1.0",
+    "image-extensions": "^1.1.0",
+    "is-url": "^1.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.34.1",
     "react-select": "^5.4.0",
     "resize-observer-polyfill": "^1.5.1",
+    "slate-history": "^0.66.0",
+    "slate-react": "^0.82.0",
     "vite-tsconfig-paths": "^3.5.0"
   },
   "devDependencies": {
