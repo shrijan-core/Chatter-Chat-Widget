@@ -92,7 +92,7 @@ const SlateEditor = ({ open, onSend }: SlateEditorProps) => {
 
   return (
     <Slate editor={editor} value={value} onChange={setValue}>
-      <div className='absolute flex items-center justify-center w-8 h-8 bottom-3'>
+      <div className='absolute flex items-center justify-center w-8 h-8 bottom-2.5'>
         <button
           className='text-neutral-600 hover:text-neutral-900 text-h6'
           onClick={open}
@@ -100,19 +100,19 @@ const SlateEditor = ({ open, onSend }: SlateEditorProps) => {
           <i className='fa fa-paperclip' />
         </button>{' '}
       </div>
-      <div className='w-full h-max-[140px] overflow-y-auto pl-9 mr-9'>
+      <div className='w-full h-max-[60px] overflow-y-auto pl-9 mr-9'>
         <Editable
           style={{
-            maxHeight: '140px',
+            maxHeight: '60px',
             width: '100%',
             minHeight: 'auto',
-            maxWidth: '710px',
+            maxWidth: '330px',
           }}
           renderElement={(props) => <Element {...props} />}
           placeholder='Send a message'
         />
       </div>
-      <div className='absolute flex items-center justify-center w-8 h-8 bottom-3 right-3'>
+      <div className='absolute flex items-center justify-center w-8 h-8 bottom-2.5 right-3'>
         <button
           className='text-primary-500 text-h6 hover:text-primary-300'
           onClick={() => {
