@@ -63,59 +63,61 @@ const UserForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit((data) => handleUserCreate(data))}
-      className='flex flex-col'
-    >
-      <p className='mb-6 text-neutral-900'>
-        Enter your information below and our team will contact you shortly.
-      </p>
-      {formData.map((formItem) => {
-        if (formItem.dropDownItems) {
-          return (
-            <Dropdown
-              key={formItem.name}
-              control={control}
-              name={formItem.name}
-              label={formItem.label}
-              errorMessage={errors?.[formItem.name]?.message}
-              hasError={Boolean(errors?.[formItem.name])}
-              dropDownItems={formItem.dropDownItems}
-              defaultItem={formItem.dropDownItems[0]}
-            />
-          );
-        } else {
-          return (
-            <Input
-              key={formItem.name}
-              name={formItem.name}
-              label={formItem.label}
-              placeholder={formItem.placeholder}
-              hasError={Boolean(errors[formItem.name])}
-              errorMessage={errors.error}
-              register={register}
-              type={formItem.type || 'text'}
-            />
-          );
-        }
-      })}
-      <div className='flex flex-row justify-between gap-4 mt-2'>
-        <Button
-          title='Skip'
-          buttonType='outline'
-          size='small'
-          containerStyles='flex-1'
-          titleStyles='text-s'
-        />
-        <Button
-          title='Send'
-          size='small'
-          type='submit'
-          containerStyles='flex-1'
-          titleStyles='text-s'
-        />
-      </div>
-    </form>
+    <div className=' rounded-lg shadow-main p-6 '>
+      <form
+        onSubmit={handleSubmit((data) => handleUserCreate(data))}
+        className='flex flex-col'
+      >
+        <p className='mb-6 text-neutral-900'>
+          Enter your information below and our team will contact you shortly.
+        </p>
+        {formData.map((formItem) => {
+          if (formItem.dropDownItems) {
+            return (
+              <Dropdown
+                key={formItem.name}
+                control={control}
+                name={formItem.name}
+                label={formItem.label}
+                errorMessage={errors?.[formItem.name]?.message}
+                hasError={Boolean(errors?.[formItem.name])}
+                dropDownItems={formItem.dropDownItems}
+                defaultItem={formItem.dropDownItems[0]}
+              />
+            );
+          } else {
+            return (
+              <Input
+                key={formItem.name}
+                name={formItem.name}
+                label={formItem.label}
+                placeholder={formItem.placeholder}
+                hasError={Boolean(errors[formItem.name])}
+                errorMessage={errors.error}
+                register={register}
+                type={formItem.type || 'text'}
+              />
+            );
+          }
+        })}
+        <div className='flex flex-row justify-between gap-4 mt-2'>
+          <Button
+            title='Skip'
+            buttonType='outline'
+            size='small'
+            containerStyles='flex-1'
+            titleStyles='text-s'
+          />
+          <Button
+            title='Send'
+            size='small'
+            type='submit'
+            containerStyles='flex-1'
+            titleStyles='text-s'
+          />
+        </div>
+      </form>
+    </div>
   );
 };
 
