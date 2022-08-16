@@ -110,6 +110,7 @@ const UserForm = () => {
         <Button
           title='Send'
           size='small'
+          type='submit'
           containerStyles='flex-1'
           titleStyles='text-s'
         />
