@@ -99,7 +99,7 @@ const WidgetToggle = ({ toggle, isOpen }: WidgetToggleProps) => {
     <button
       onClick={toggle}
       aria-label={`${isOpen ? 'Close' : 'Open'} chat widget`}
-      className='w-[60px] h-[60px] rounded-full bg-primary-500 flex justify-center items-center absolute bottom-10 right-10 shadow-main'
+      className='w-[60px] h-[60px] rounded-full bg-primary-500 flex justify-center items-center z-[99999] absolute bottom-10 right-10 shadow-main'
     >
       {isOpen ? <DefaultCloseIcon /> : <DefaultToggleIcon />}
     </button>

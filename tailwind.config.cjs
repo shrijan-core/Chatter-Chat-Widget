@@ -79,6 +79,10 @@ module.exports = {
       boxShadow: {
         main: '0px 4px 20px rgba(155, 155, 155, 0.1)',
       },
+      screens: {
+        xxs: '480px',
+        xs: '560px',
+      },
     },
   },
   plugins: [require('tailwind-scrollbar')],

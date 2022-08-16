@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className='bg-neutral-300 relative w-screen h-screen'>
-      <ChatPopup isOpen={open} />
+      <ChatPopup isOpen={open} onClose={() => setOpen(false)} />
       <WidgetToggle toggle={toggle} isOpen={open} />
     </div>
   );
