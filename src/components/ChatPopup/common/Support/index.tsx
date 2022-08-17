@@ -11,10 +11,6 @@ const Support = () => {
   const userData = useContext(UserContext);
   const { showForm } = userData;
 
-  useEffect(() => {
-    console.log('userData', showForm);
-  }, [showForm]);
-
   return (
     <div className='bg-neutral-100 p-6 overflow-hidden h-[calc(100vh-229px)] xxs:h-[50vh] overflow-y-auto chatter-scrollbar'>
       {showForm ? <UserForm onSkip={() => null} /> : <ChatLive />}
