@@ -20,11 +20,14 @@ const withImages = (editor: Editor) => {
   const { insertData, isVoid } = editor;
 
   editor.isVoid = (element) => {
-    return element.type === 'image' ? true : isVoid(element);
+    if (element.type === 'form') return true;
+    else if (element.type === 'image') return true;
+    return isVoid(element);
   };
 
   editor.insertData = (data) => {
     const text = data.getData('text/plain');
+
     const { files } = data;
 
     if (files && files.length > 0) {
@@ -64,6 +67,8 @@ const Element = (props: any) => {
   switch (element.type) {
     case 'image':
       return <Image {...props} />;
+    case 'form':
+      return <p {...attributes}>open form</p>;
     default:
       return <p {...attributes}>{children}</p>;
   }

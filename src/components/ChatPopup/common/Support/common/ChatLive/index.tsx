@@ -117,6 +117,26 @@ const convMessages = {
       createdAt: '2022-07-18T09:00:00.508Z',
       message: [
         {
+          type: 'form',
+          action: 'open-form',
+          children: [
+            {
+              text: 'All channels are unique, the easiest way to deliver information to target audiences is to use Campaigns.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 2,
+      userInfo: {
+        avatar:
+          'https://cdn.pixabay.com/photo/2022/06/28/20/31/cat-7290531__340.jpg',
+        username: 'Jerome Bell',
+      },
+      createdAt: '2022-07-18T09:00:00.508Z',
+      message: [
+        {
           type: 'paragraph',
           children: [
             {

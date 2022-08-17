@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React, { useContext, useId } from 'react';
 
 // packages
 import _ from 'lodash';
@@ -14,13 +14,17 @@ import { isSameSender } from './util';
 // types
 import { ChatBodyProps, ChatMessageProps } from './types';
 
+// context
+import { UserContext, UserDispatchContext } from '@/context';
+
 const ChatBody: React.FC<ChatBodyProps> = ({
   chatMessages,
   setChatMessages,
-  hasFiles,
 }) => {
   // const { messages } = convMessages;
   const userId = 2;
+  const userData = useContext(UserContext);
+  const setUserData = useContext(UserDispatchContext);
 
   const ChatMessage: React.FC<ChatMessageProps> = ({
     message,
@@ -115,6 +119,33 @@ const ChatBody: React.FC<ChatBodyProps> = ({
       );
     };
 
+    const LinkMessageBody = ({ links }: { links: string[] }) => {
+      function openForm() {
+        setUserData({ ...userData, showForm: true });
+      }
+      return (
+        <div
+          className={`rounded-lg p-3 
+            ${isOwnReply ? 'bg-primary-500' : 'bg-neutral-200'}
+            ${
+              !sameSender
+                ? isOwnReply
+                  ? 'rounded-br-none'
+                  : 'rounded-bl-none'
+                : ''
+            }
+            `}
+        >
+          <a
+            className='cursor-pointer text-primary-500 underline'
+            onClick={() => openForm()}
+          >
+            Open
+          </a>
+        </div>
+      );
+    };
+
     const ChatMessageBodyRender = ({
       type,
       data,
@@ -127,6 +158,8 @@ const ChatBody: React.FC<ChatBodyProps> = ({
           return <TextMessageBody texts={data} />;
         case 'image':
           return <ImageMessageBody images={data} />;
+        case 'form':
+          return <LinkMessageBody links={data} />;
         default:
           return <TextMessageBody texts={data} />;
       }
