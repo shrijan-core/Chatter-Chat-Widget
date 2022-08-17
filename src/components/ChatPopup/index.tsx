@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 import ChatPopupWeb from './index-web';
 import ChatPopupMobile from './index-mobile';
+
+// types
 import { ChatPopupProps } from './types';
+
+// context
+import { UserProvider } from '@/context';
 
 function getWindowSize() {
   const { innerWidth, innerHeight } = window;
@@ -25,9 +30,13 @@ const ChatPopup: React.FC<ChatPopupProps> = ({ isOpen, onClose }) => {
   }, []);
 
   return windowSize.innerWidth > 425 ? (
-    <ChatPopupWeb isOpen={isOpen} />
+    <UserProvider>
+      <ChatPopupWeb isOpen={isOpen} />
+    </UserProvider>
   ) : (
-    <ChatPopupMobile isOpen={isOpen} onClose={onClose} />
+    <UserProvider>
+      <ChatPopupMobile isOpen={isOpen} onClose={onClose} />
+    </UserProvider>
   );
 };
 

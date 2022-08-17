@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 // components
 import Input from '@/components/Input';
@@ -10,6 +10,9 @@ import { useForm } from 'react-hook-form';
 
 // types
 import { UserFormProps } from './types';
+
+// context
+import { UserContext, UserDispatchContext } from '@/context';
 
 const formData = [
   {
@@ -59,6 +62,8 @@ const UserForm = ({ onSkip }: UserFormProps) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const userData = useContext(UserContext);
+  const setUserData = useContext(UserDispatchContext);
 
   const handleUserCreate = (data: any) => {
     console.log({ data });
@@ -110,7 +115,7 @@ const UserForm = ({ onSkip }: UserFormProps) => {
             size='small'
             containerStyles='flex-1'
             titleStyles='text-s'
-            onClick={onSkip}
+            onClick={() => setUserData({ ...userData, showForm: false })}
           />
           <Button
             title='Send'
