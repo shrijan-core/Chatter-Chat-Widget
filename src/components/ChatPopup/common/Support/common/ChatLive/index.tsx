@@ -1,6 +1,15 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useCallback } from 'react';
+
+// packages
+import { FileError, FileRejection, useDropzone } from 'react-dropzone';
+
 import ChatBody from '../ChatBody';
 import SlateEditor from '../SlateEditor';
+
+export interface ImageFile extends File {
+  preview?: string;
+  errors?: FileError[];
+}
 
 const convMessages = {
   messages: [
@@ -124,11 +133,110 @@ const ChatLive = () => {
   const [chatMessages, setChatMessages] = useState<any[]>(
     convMessages.messages
   );
-  const [inputHeight, setInputHeight] = useState(56);
+  const [myFiles, setMyFiles] = useState<ImageFile[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const onDrop = useCallback(
+    (acceptedFiles: ImageFile[], fileRejections: FileRejection[]) => {
+      setMyFiles([
+        ...myFiles,
+        ...acceptedFiles.map((file) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          })
+        ),
+      ]);
+      fileRejections.forEach((file) => {
+        file.errors?.forEach((err) => {
+          alert(err.message);
+          if (err.code === 'file-too-large') {
+            console.log({
+              type: 'error',
+              title: `Error: ${err.message}`,
+            });
+          }
+
+          if (err.code === 'file-invalid-type') {
+            console.log({
+              type: 'error',
+              title: `Error: ${err.message}`,
+            });
+          }
+        });
+      });
+      if (acceptedFiles.length > 0) {
+        injectImage(acceptedFiles);
+      }
+    },
+    [myFiles, chatMessages]
+  );
+
+  const injectImage = (files: File[]) => {
+    const temp: any = [];
+    const newFiles = {
+      id: 1,
+      userInfo: {
+        avatar:
+          'https://cdn.pixabay.com/photo/2022/06/29/10/58/fox-7291456__340.jpg',
+        username: 'Daniel Russell',
+      },
+      createdAt: '2022-07-18T08:11:05.508Z',
+      message: [
+        {
+          type: 'image',
+          url: temp,
+          children: [
+            {
+              text: '',
+            },
+          ],
+        },
+      ],
+    };
+    console.log(chatMessages);
+    files.forEach((file) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = function () {
+        temp.push(reader.result);
+        setChatMessages([...chatMessages, newFiles]);
+        setMyFiles([]);
+      };
+
+      reader.onerror = function () {
+        console.log(reader.error);
+      };
+    });
+  };
+
+  const { open, getRootProps, getInputProps, acceptedFiles } = useDropzone({
+    noClick: true,
+    noKeyboard: true,
+    maxSize: 10000000,
+    onDrop: onDrop,
+    maxFiles: 1,
+  });
+
+  const onSendMessage = (message: any) => {
+    const newMessages = {
+      id: 1,
+      userInfo: {
+        avatar:
+          'https://cdn.pixabay.com/photo/2022/06/29/10/58/fox-7291456__340.jpg',
+        username: 'Daniel Russell',
+      },
+      createdAt: '2022-07-18T08:11:05.508Z',
+      message,
+    };
+    setChatMessages([...chatMessages, newMessages]);
+  };
+
   return (
-    <div className=' rounded-lg shadow-main p-6 h-full flex flex-col'>
+    <div
+      className=' rounded-lg shadow-main p-6 h-full flex flex-col'
+      {...getRootProps()}
+    >
       <div
         className={`flex flex-1 mb-3 overflow-hidden overflow-y-auto chatter-scrollbar
         `}
@@ -137,12 +245,13 @@ const ChatLive = () => {
           chatMessages={chatMessages}
           setChatMessages={setChatMessages}
         />
+        <input {...getInputProps()} />
       </div>
       <div
         ref={inputRef}
         className='flex p-4 relative rounded-lg bg-neutral-200 items-start'
       >
-        <SlateEditor />
+        <SlateEditor open={open} onSend={onSendMessage} />
       </div>
     </div>
   );

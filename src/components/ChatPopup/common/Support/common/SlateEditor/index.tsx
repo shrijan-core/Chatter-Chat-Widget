@@ -116,7 +116,7 @@ const SlateEditor = ({ open, onSend }: SlateEditorProps) => {
         <button
           className='text-primary-500 text-h6 hover:text-primary-300'
           onClick={() => {
-            // onSend(value);
+            onSend(value);
             resetValue();
           }}
         >
